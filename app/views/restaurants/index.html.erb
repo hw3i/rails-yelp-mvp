@@ -1,12 +1,17 @@
 
-<h1>All our Restaurants</h1>
+<h1>All The Restaurants</h1>
 
-<button><%= link_to "Add A New Restaurant", new_restaurant_path %></button>
+    <% @restaurants.each do |restaurant| %>
+      <h3><%= link_to restaurant.name, restaurant_path(restaurant) %> - <%= restaurant.category.capitalize %> Restaurant</h3>
+      <p><i class="fa fa-map-marker" aria-hidden="true"></i> <%= restaurant.address %></p>
 
-<% @restaurants.each do |restaurant| %>
-  <h3><%= link_to restaurant.name, restaurant_path(restaurant) %> - [<%= restaurant.category.capitalize %>]</h3>
-  <p><%= restaurant.address %></p>
-  <p>Average rating: <%= "*" * restaurant.average_rating %></p>
-  <%= link_to "Add a Review", new_restaurant_review_path(restaurant) %> ||
-  <%= link_to "Delete this restaurant", restaurant_path(restaurant), method: :delete %>
-<% end %>
+      <p>
+        Average Rating:
+        <% restaurant.average_rating.times do |rating| %>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        <% end %>
+      </p>
+      <%= link_to "Add a Review", new_restaurant_review_path(restaurant) %> ||
+      <%= link_to "Delete this restaurant", restaurant_path(restaurant), method: :delete %>
+      <hr>
+    <% end %>

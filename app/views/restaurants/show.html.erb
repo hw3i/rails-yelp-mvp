@@ -1,13 +1,25 @@
 
-<h1><%= @restaurant.name %> - <%= @restaurant.category %></h1>
-<p><%= @restaurant.address %></p>
-<p><%= "*" * @restaurant.average_rating %></p>
+<h1><%= @restaurant.name %></h1>
+<h3><i class="fa fa-cutlery" aria-hidden="true"></i> <%= @restaurant.category.capitalize %></h3>
+<h3><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @restaurant.address %></h3>
+<h3><i class="fa fa-mobile" aria-hidden="true"></i> <%= @restaurant.phone_number %></h3>
+<p>
+  Average Rating:
+  <% @restaurant.average_rating.times do |rating| %>
+   <i class="fa fa-star" aria-hidden="true"></i>
+  <% end %>
+</p>
 
 <ul>
   <% @restaurant.reviews.each do |review| %>
-    <li><%= '*' * review.rating %> - <%= review.content %></li>
+    <% review.rating.times do |rating| %>
+      <i class="fa fa-star" aria-hidden="true"></i>
+    <% end %>
+    - <%= review.content %>
+    <br>
   <% end %>
 </ul>
 
+<%= link_to 'Add A Review', new_restaurant_review_path(@restaurant) %> ||
 <%= link_to 'Edit this restaurant', edit_restaurant_path(@restaurant) %> ||
 <%= link_to 'Back to Home', restaurants_path %>

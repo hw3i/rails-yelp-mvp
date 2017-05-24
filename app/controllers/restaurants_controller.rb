@@ -2,7 +2,11 @@ class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
   def index
-    @restaurants = Restaurant.all
+    if params[:search].nil? || params[:search].empty?
+      @restaurants = Restaurant.all
+    else
+      @restaurants = Restaurant.where(name: params[:search])
+    end
   end
 
   def show
@@ -14,7 +18,7 @@ class RestaurantsController < ApplicationController
 
   def create
     # Create restaurant
-    @restaurant = Restaurant.create(restaurant_params)
+    @restaurant = Restaurant.new(restaurant_params)
     # redirect to the index of restaurants
     if @restaurant.save
       redirect_to restaurant_path(@restaurant)

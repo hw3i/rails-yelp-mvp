@@ -6,7 +6,7 @@ class Restaurant < ApplicationRecord
   validates :category, inclusion: { in: CATEGORIES, allow_nil: false }
 
   def average_rating
-    if self.reviews.length >0
+    if self.reviews.length > 0
       rating_array = []
       self.reviews.each do |review|
         rating_array << review.rating
