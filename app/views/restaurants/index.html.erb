@@ -1,12 +1,12 @@
 
 <h1>All our Restaurants</h1>
 
-<%= link_to "Add a new restaurant", new_restaurant_path %>
+<button><%= link_to "Add A New Restaurant", new_restaurant_path %></button>
 
 <% @restaurants.each do |restaurant| %>
-  <h3><%= link_to restaurant.name, restaurant_path(restaurant) %> - [<%= restaurant.category %>]</h3>
+  <h3><%= link_to restaurant.name, restaurant_path(restaurant) %> - [<%= restaurant.category.capitalize %>]</h3>
   <p><%= restaurant.address %></p>
-  <p><%= "*" * @review.rating %></p>
+  <p>Average rating: <%= "*" * restaurant.average_rating %></p>
+  <%= link_to "Add a Review", new_restaurant_review_path(restaurant) %> ||
   <%= link_to "Delete this restaurant", restaurant_path(restaurant), method: :delete %>
-  <%= link_to "Edit this restaurant", new_restaurant_review_path(@restaurant) %>
 <% end %>
