@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20170524101853) do
     t.string   "phone_number"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.string   "review"
   end
 
   create_table "reviews", force: :cascade do |t|
