@@ -1,0 +1,12 @@
+<%= simple_form_for @restaurant, class: 'form-inline' do |f| %>
+  <%= f.label :name, "Enter a name" %>
+  <%= f.text_field :name, class: 'form-control' %>
+
+  <%= f.label :category, "Enter a category" %>
+  <%= f.text_field :category %>
+
+  <%= f.label :address, "Enter an address" %>
+  <%= f.text_field :address %>
+
+  <%= f.submit %>
+<% end %>
